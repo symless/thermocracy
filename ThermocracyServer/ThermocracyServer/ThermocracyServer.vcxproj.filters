@@ -13,5 +13,33 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Source Files\3rdParty">
+      <UniqueIdentifier>{db71fa6a-5d4e-4307-a8a3-3a7503a49839}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3rdParty">
+      <UniqueIdentifier>{88a6e9e6-969e-4fb3-9700-938a085756c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\3rdParty\Json">
+      <UniqueIdentifier>{1e05334c-9ed6-414b-b58f-1af3364a90b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\3rdParty\Json">
+      <UniqueIdentifier>{38f313d0-290c-4b14-9b63-f5600683da58}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Source.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="3party\jsoncpp.cpp">
+      <Filter>Source Files\3rdParty\Json</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\3party\json\json.h">
+      <Filter>Header Files\3rdParty\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="..\3party\json\json-forwards.h">
+      <Filter>Header Files\3rdParty\Json</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
