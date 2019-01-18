@@ -1,0 +1,13 @@
+{
+  "name": "Thermocracy",
+  "version": "0.1.0",
+  "description": "Vote on the temperature of your office thermostat",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "Symless",
+  "devDependencies": {
+    "electron": "^4.0.1"
+  }
+}
