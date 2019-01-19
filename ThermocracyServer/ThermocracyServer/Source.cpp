@@ -216,7 +216,10 @@ template<
 
 	auto server = Server::getInstance();
 
-	std::string respBody = server[path](Server::NULL_ID , json);
+	std::string authorization = req[http::field::authorization].to_string();
+	int userId = authorization.size() > 0 ? std::atoi(authorization.c_str()) : Server::NULL_ID;
+
+	std::string respBody = server[path](userId , json);
 
 	if (respBody.compare(Server::ERROR_404) == 0) {
 		return send(not_found(path));
