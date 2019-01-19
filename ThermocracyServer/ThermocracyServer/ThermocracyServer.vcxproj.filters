@@ -25,6 +25,12 @@
     <Filter Include="Source Files\3rdParty\Json">
       <UniqueIdentifier>{38f313d0-290c-4b14-9b63-f5600683da58}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Messages">
+      <UniqueIdentifier>{fe275f38-0656-4d93-beea-2c06fdb6edc8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Messages">
+      <UniqueIdentifier>{83edce87-73cb-4efb-b4fc-2d87cdb7dde7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -33,6 +39,12 @@
     <ClCompile Include="3party\jsoncpp.cpp">
       <Filter>Source Files\3rdParty\Json</Filter>
     </ClCompile>
+    <ClCompile Include="EchoJson.cpp">
+      <Filter>Source Files\Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonMessageBase.cpp">
+      <Filter>Source Files\Messages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\3party\json\json.h">
@@ -40,6 +52,12 @@
     </ClInclude>
     <ClInclude Include="..\3party\json\json-forwards.h">
       <Filter>Header Files\3rdParty\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="EchoJson.h">
+      <Filter>Header Files\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonMessageBase.h">
+      <Filter>Header Files\Messages</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
