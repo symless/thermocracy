@@ -24,11 +24,11 @@ bool UserJson::deserialize(const std::string& data)
 
 std::string UserJson::get_role()
 {
-    if (!m_rootNode.empty()) throw std::runtime_error("no JSON 'role' filed found");
-        return m_rootNode["role"].asString();
+//    if (!m_rootNode.empty()) throw std::runtime_error("no JSON 'role' filed found");
+        return m_rootNode["user"]["role"].asString();
 }
 
 void UserJson::set_id(int id)
 {
-    m_rootNode["id"] = std::to_string(id);
+    m_rootNode["user"]["id"] = id;
 }

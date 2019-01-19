@@ -22,7 +22,7 @@ std::string Thermocracy::user(const std::string& data)
 {
 	UserJson json;
 	if( !json.deserialize(data) )
-		return "";
+		return Server::ERROR_400;
 
 	Role_t role = json.get_role();
 	ClientID_t id = createNewClient(role);
@@ -35,7 +35,7 @@ std::string Thermocracy::user(const std::string& data)
 
 Thermocracy::ClientID_t Thermocracy::createNewClient(Role_t role){
 	// data in map is sorted
-	auto nextID = m_clientData.rbegin()->first + client_ID_incr;
+	auto nextID = m_clientData.empty()? 1: m_clientData.rbegin()->first + client_ID_incr;
 	m_clientData[nextID] = Thermocracy::ClientData_t { true, role, 0, 0 };
 	return nextID;
 };
