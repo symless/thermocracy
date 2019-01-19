@@ -1,0 +1,55 @@
+/* GENERAL */
+.hidden {
+    display: none;
+}
+
+/* BUTTONS */
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #3ba6f3;
+    color: white;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    height: 40px;
+    width: 160px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all .2s ease-in;
+    box-shadow: 0 3px 13px 0 rgba(31,41,48,.15);
+}
+
+button:hover {
+    box-shadow: 0 4px 18px 0 rgba(31,41,48,.25);
+    transform: translateY(-2px);
+}
+
+/* INDEX */
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+}
+
+h1 {
+    margin-top: -37px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+.roles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.roles button + button {
+    margin-top: 20px;
+}
