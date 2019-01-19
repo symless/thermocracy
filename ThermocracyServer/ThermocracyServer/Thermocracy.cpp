@@ -1,11 +1,12 @@
 #include "Thermocracy.h"
 #include "Server.h"
 #include "CurrentTemperature.h"
+#include "JsonUserVote.h"
 
 #include "EchoJson.h"
 #include "UserJson.h"
 
-std::string Thermocracy::echo(const std::string & data)
+std::string Thermocracy::echo(const std::string & data) const 
 {
 	EchoJson echoJson;
 	if (echoJson.deserialize(data))
@@ -55,10 +56,26 @@ bool Thermocracy::isClientExistent(Thermocracy::ClientID_t id)
 	return m_clientData.find(id) != m_clientData.end();
 }
 
-std::string Thermocracy::getCurrentTemp(const std::string& data)
+std::string Thermocracy::getCurrentTemp(const std::string& data) const
 {
 	CurrentTemperature curTemp;
 	curTemp.deserialize("");
 	curTemp.setTemp(m_currentTemperature);
 	return curTemp.serialize();
+}
+
+std::string Thermocracy::submitUserVote(const int id, const std::string& data)
+{
+	std::string rv = Server::ERROR_400;
+	JsonUserVote vote;
+	if (vote.deserialize(data) && isClientExistent(id))
+	{
+		const int voteValue = vote.getUserVote();
+		auto &clientData = accessClientData(id);
+
+		std::get<eVote>(clientData) = voteValue;
+
+		rv = "{\"You_Voted\": " + std::to_string(std::get<eVote>(clientData)) +"}";
+	}
+	return rv;
 }

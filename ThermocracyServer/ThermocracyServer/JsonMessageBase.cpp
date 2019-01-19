@@ -29,6 +29,10 @@ bool JsonMessageBase::deserialize(const std::string& data)
 		std::cerr << "failed the read the JSON data: " << data;
 		rv = false;
 	}
+	else
+	{
+		rv = true;
+	}
 	return rv;
 }
 

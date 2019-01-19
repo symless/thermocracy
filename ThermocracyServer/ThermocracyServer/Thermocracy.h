@@ -6,6 +6,14 @@
 class Thermocracy
 {
 public:
+	enum
+	{
+		  eActive
+		, eRole
+		, eVote
+		, eVoteDate
+	};
+
 	using Vote_t = int;
 	using Active_t = bool;
 	using ClientID_t = int;
@@ -17,10 +25,11 @@ public:
 
 
 public:
-	std::string echo(const std::string& data);
+	std::string echo(const std::string& data) const;
 	std::string user(const std::string& data);
 
-	std::string getCurrentTemp(const std::string& data);
+	std::string getCurrentTemp(const std::string& data) const;
+	std::string submitUserVote(const int id, const std::string& data);
 private:
 	ClientID_t createNewClient(Role_t);
 	void removeClient(ClientID_t);
