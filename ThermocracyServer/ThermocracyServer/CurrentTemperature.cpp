@@ -1,4 +1,6 @@
+#include <sstream>
 #include "CurrentTemperature.h"
+#include <iomanip>
 
 bool CurrentTemperature::deserialize(const std::string& data)
 {
@@ -24,7 +26,9 @@ int CurrentTemperature::getTemp()
 	return temp;
 }
 
-void CurrentTemperature::setTemp(int temp)
+void CurrentTemperature::setTemp(float temp)
 {
-	m_rootNode["current_temperature"] = temp;
+	std::stringstream ss;
+	ss << std::fixed << std::setprecision(1) << temp;
+	m_rootNode["current_temperature"] = ss.str();
 }

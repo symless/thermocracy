@@ -9,6 +9,6 @@ public:
 
 	int getTemp();
 
-	void setTemp(int temp);
+	void setTemp(float temp);
 
 };

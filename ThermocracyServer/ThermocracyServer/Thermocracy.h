@@ -4,7 +4,7 @@
 
 class Thermocracy
 {
-	int m_currentTemperature = 0;
+	float m_currentTemperature = 20.89475693;
 
 
 public:
