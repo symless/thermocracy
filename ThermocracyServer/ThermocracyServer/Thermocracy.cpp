@@ -5,6 +5,7 @@
 
 #include "EchoJson.h"
 #include "UserJson.h"
+#include "JsonVoteSummery.h"
 
 std::string Thermocracy::echo(const std::string & data) const 
 {
@@ -78,4 +79,15 @@ std::string Thermocracy::submitUserVote(const int id, const std::string& data)
 		rv = "{\"You_Voted\": " + std::to_string(std::get<eVote>(clientData)) +"}";
 	}
 	return rv;
+}
+
+std::string Thermocracy::getVoteSummery()
+{
+	JsonVoteSummery voteSummery;
+
+	for (std::pair<const int, std::tuple<bool, std::basic_string<char>, int, int>>& client_data : m_clientData)
+	{
+		voteSummery.addVoteToSummery(std::get<eVote>(client_data.second));
+	}
+	return voteSummery.serialize();
 }

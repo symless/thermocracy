@@ -30,6 +30,8 @@ public:
 
 	std::string getCurrentTemp(const std::string& data) const;
 	std::string submitUserVote(const int id, const std::string& data);
+
+	std::string getVoteSummery();
 private:
 	ClientID_t createNewClient(Role_t);
 	void removeClient(ClientID_t);
