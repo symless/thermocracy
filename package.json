@@ -3,11 +3,18 @@
   "version": "0.1.0",
   "description": "Vote on the temperature of your office thermostat",
   "main": "main.js",
+  "appId": "symless.thermocracy",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "mac": {
+    "category": "office.productivity"
   },
   "author": "Symless",
   "devDependencies": {
-    "electron": "^4.0.1"
+    "electron": "^4.0.1",
+    "electron-builder": "^20.38.5"
   }
 }
