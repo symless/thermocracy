@@ -16,7 +16,18 @@ set(Boost_LIBRARY_DIR "/usr/local/Cellar/boost/1.68.0_1/lib")
 set(JSON_INCLUDE_PATH "./3party/json")
 set(JSON_CPP "./3party/jsoncpp.cpp")
 
-set(SOURCES Source.cpp Server.cpp Thermocracy.cpp EchoJson.cpp JsonMessageBase.cpp ${JSON_CPP} )
+set(SOURCES Source.cpp
+        Server.h
+        Server.cpp
+        Thermocracy.h
+        Thermocracy.cpp
+        EchoJson.h
+        EchoJson.cpp
+        JsonMessageBase.h
+        JsonMessageBase.cpp
+        ${JSON_CPP}
+        UserJson.h
+        UserJson.cpp)
 
 if(Boost_FOUND)
     include_directories("/usr/local/boost-1.68.0/include" "./")
