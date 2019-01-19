@@ -143,3 +143,38 @@ for (let voteButton of voteButtons) {
         
     });
 }
+
+
+var sliders = document.getElementsByClassName('js-slider');
+for (let slider of sliders) {
+    slider.addEventListener('input', function(){
+        if (slider.dataset.type == "time") {
+            document.getElementById(slider.dataset.label).innerHTML = slider.dataset.label + ": " + slider.value + ":00"
+        } else {
+            document.getElementById(slider.dataset.label).innerHTML = slider.dataset.label + ": " + slider.value + "°"
+        }
+        
+    });
+}
+
+document.getElementById('admin-submit').addEventListener('click', function(){
+    // networking.post({
+    //     path: 'office_configuration',
+    //     body: { office_configuration : 
+    //         { seasonal_defaults : 
+    //             {
+
+    //             }
+    //         , change_hours : []
+    //         }
+    //     },
+    //     headers: {
+    //         'Authorization': global.clientSettings.currentUserId
+    //     },
+    //     callback: function (body) {
+    //         document.getElementsByClassName('voted')[0].style.transform = 'scale(1) rotate(35deg)';
+    //     }
+    // });
+    document.getElementsByClassName('js-admin-index')[0].style.display = 'none';
+    document.getElementsByClassName('js-employee-index')[0].style.display = 'flex';
+});

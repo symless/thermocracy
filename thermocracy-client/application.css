@@ -155,6 +155,70 @@ h1 {
     -webkit-text-stroke: 3.5px white;
 }
 
+/* ADMIN */
+.admin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.admin h2 {
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+    margin-bottom: 20px;
+}
+
+.admin input {
+    width: 160px;
+    height: 34px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: 5px;
+    font-size: 16px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.admin__input {
+    position: relative;
+    margin-top: 10px;
+}
+
+.admin__input label {
+    position: absolute;
+    top: -15px;
+    left: 0px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 14px
+}
+
+.admin input:focus {
+    outline: none;
+    border: 2px solid #3ba6f3;
+}
+
+.admin input + input {
+    margin-top: 10px;
+}
+
+.admin button {
+    margin-top: 10px;
+}
+
+.degree-wrapper {
+    position: relative;
+}
+
+.degree-wrapper:after {
+    content: '°';
+    position: absolute;
+    top: 10px;
+    left: 40px;
+}
+
+
 /* GENERAL */
 .hidden {
     display: none;

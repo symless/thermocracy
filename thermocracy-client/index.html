@@ -16,14 +16,62 @@
       <button class="js-role-button-admin" >Admin</button>
     </div>
     <div class="js-admin-index hidden admin">
-      <input type=number/>
-      <input type=number/>
-      <input type=number/>
-      <input type=number/>
-      <input type=number/>
-      <input type=number/>
+      <h2>Seasonal Defaults</h2>
+      <datalist id="temps">
+        <option>15</option>
+        <option>16</option>
+        <option>17</option>
+        <option>18</option>
+        <option>19</option>
+        <option>20</option>
+        <option>21</option>
+        <option>22</option>
+        <option>23</option>
+        <option>24</option>
+        <option>25</option>
+      </datalist>
+      <div class="admin__input">
+        <label id="Summer">Summer</label>
+        <input class="js-slider" type="range" min="15" max="25" value="20" list="temps" data-label="Summer" data-type="temp"/>
+      </div>
+      <div class="admin__input">
+        <label id="Autumn">Autumn</label>
+        <input class="js-slider" type="range" min="15" max="25" value="20" list="temps" data-label="Autumn" data-type="temp"/>
+      </div>
+      <div class="admin__input">
+        <label id="Winter">Winter</label>
+        <input class="js-slider" type="range" min="15" max="25" value="20" list="temps" data-label="Winter" data-type="temp"/>
+      </div>
+      <div class="admin__input">
+        <label id="Spring">Spring</label>
+        <input class="js-slider" type="range" min="15" max="25" value="20" list="temps" data-label="Spring" data-type="temp"/>
+      </div>
+      <h2>Thermostat Change Times</h2>
+      <datalist id="times">
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10</option>
+          <option>11</option>
+          <option>12</option>
+          <option>13</option>
+          <option>14</option>
+          <option>15</option>
+          <option>16</option>
+          <option>17</option>
+          <option>18</option>
+          <option>19</option>
+        </datalist>
+      <div class="admin__input">
+        <label id="Time 1">Time 1</label>
+        <input class="js-slider" type="range" min="7" max="19" list="times" data-label="Time 1" data-type="time"/>
+      </div>
+      <div class="admin__input">
+        <label id="Time 2">Time 2</label>
+        <input class="js-slider" type="range" min="7" max="19" list="times" data-label="Time 2" data-type="time"/>
+      </div>
 
-      <button>Submit</button>
+      <button id="admin-submit">Submit</button>
     </div>
     <div class="js-employee-index hidden index">
       <button class="red js-vote-button" data-vote="2">↑↑</button>
