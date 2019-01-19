@@ -9,6 +9,7 @@ Server::Server()
 
 	m_requestMap["/echo"]					= [this](int id, std::string params)->std::string { return m_ThermocracyServer.echo(params); };
 	m_requestMap["/temperature/current"]	= [this](int id, std::string params)->std::string { return m_ThermocracyServer.getCurrentTemp(params); };
+	m_requestMap["/user"]					= [this](int id,std::string params)->std::string{ return m_ThermocracyServer.user(params);};
 }
 
 

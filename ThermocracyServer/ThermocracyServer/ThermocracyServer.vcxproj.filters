@@ -60,6 +60,9 @@
     <ClCompile Include="CurrentTemperature.cpp">
       <Filter>Source Files\Messages</Filter>
     </ClCompile>
+    <ClCompile Include="UserJson.cpp">
+      <Filter>Source Files\Messages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\3party\json\json.h">
@@ -81,6 +84,9 @@
       <Filter>Header Files\Server</Filter>
     </ClInclude>
     <ClInclude Include="CurrentTemperature.h">
+      <Filter>Header Files\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="UserJson.h">
       <Filter>Header Files\Messages</Filter>
     </ClInclude>
   </ItemGroup>
