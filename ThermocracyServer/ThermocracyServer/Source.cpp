@@ -53,6 +53,10 @@
 #include <memory>
 #include <string>
 #include <thread>
+#include "Server.h"
+
+
+#include "EchoJson.h"
 
 using tcp = boost::asio::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
 namespace http = boost::beast::http;    // from <boost/beast/http.hpp>
@@ -181,7 +185,8 @@ template<
 
 	// Make sure we can handle the method
 	if (req.method() != http::verb::get &&
-		req.method() != http::verb::head)
+		req.method() != http::verb::head &&
+		req.method() != http::verb::post)
 		return send(bad_request("Unknown HTTP-method"));
 
 	// Request path must be absolute and not contain "..".
@@ -190,55 +195,75 @@ template<
 		req.target().find("..") != boost::beast::string_view::npos)
 		return send(bad_request("Illegal request-target"));
 
-	// Build the path to the requested file
-	std::string path = path_cat(doc_root, req.target());
-	if (req.target().back() == '/')
-		path.append("index.html");
+	std::string path = req.target().to_string();
 
-	// Attempt to open the file
-	boost::beast::error_code ec;
-	http::file_body::value_type body;
-	body.open(path.c_str(), boost::beast::file_mode::scan, ec);
+	
 
-	// Handle the case where the file doesn't exist
-	if (ec == boost::system::errc::no_such_file_or_directory)
-		return send(not_found(req.target()));
+	if (path.compare("/echo") == 0) {
+		std::string json = req.body();
 
-	// Handle an unknown error
-	if (ec)
-		return send(server_error(ec.message()));
+		auto server = Server::getInstance();
 
-	// Cache the size since we need it after the move
-	auto const size = body.size();
+		std::string respBody = server[path](Server::NULL_ID , json);
 
-	// Respond to HEAD request
-	if (req.method() == http::verb::head)
-	{
-		std::cout << "Success 200" << std::endl;
-		http::response<http::empty_body> res{ http::status::ok, req.version() };
+		http::response<http::string_body> res{ http::status::ok, req.version() };
 		res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
-		res.set(http::field::content_type, mime_type(path));
-		res.content_length(size);
+		res.set(http::field::content_type, "application/json");
 		res.keep_alive(req.keep_alive());
+		res.body() = respBody;
+		res.prepare_payload();
 		return send(std::move(res));
 	}
 
-	// Respond to GET request
+	//Build the path to the requested file
+	//std::string path = path_cat(doc_root, req.target());
+	//if (req.target().back() == '/')
+	//	path.append("index.html");
 
-	/*boost::system::error_code ec;
-	log(ec, "Success 200");*/
+	//// Attempt to open the file
+	//boost::beast::error_code ec;
+	//http::file_body::value_type body;
+	//body.open(path.c_str(), boost::beast::file_mode::scan, ec);
 
-	std::cout << "Success 200" << std::endl;
+	//// Handle the case where the file doesn't exist
+	//if (ec == boost::system::errc::no_such_file_or_directory)
+	//	return send(not_found(req.target()));
 
-	http::response<http::file_body> res{
-		std::piecewise_construct,
-		std::make_tuple(std::move(body)),
-		std::make_tuple(http::status::ok, req.version()) };
-	res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
-	res.set(http::field::content_type, mime_type(path));
-	res.content_length(size);
-	res.keep_alive(req.keep_alive());
-	return send(std::move(res));
+	//// Handle an unknown error
+	//if (ec)
+	//	return send(server_error(ec.message()));
+
+	//// Cache the size since we need it after the move
+	//auto const size = body.size();
+
+	//// Respond to HEAD request
+	//if (req.method() == http::verb::head)
+	//{
+	//	std::cout << "Success 200" << std::endl;
+	//	http::response<http::empty_body> res{ http::status::ok, req.version() };
+	//	res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
+	//	res.set(http::field::content_type, mime_type(path));
+	//	res.content_length(size);
+	//	res.keep_alive(req.keep_alive());
+	//	return send(std::move(res));
+	//}
+
+	//// Respond to GET request
+
+	///*boost::system::error_code ec;
+	//log(ec, "Success 200");*/
+
+	//std::cout << "Success 200" << std::endl;
+
+	//http::response<http::file_body> res{
+	//	std::piecewise_construct,
+	//	std::make_tuple(std::move(body)),
+	//	std::make_tuple(http::status::ok, req.version()) };
+	//res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
+	//res.set(http::field::content_type, mime_type(path));
+	//res.content_length(size);
+	//res.keep_alive(req.keep_alive());
+	//return send(std::move(res));
 }
 
 //------------------------------------------------------------------------------
@@ -247,7 +272,7 @@ template<
 void log(boost::system::error_code ec, char const* what)
 {
 
-	std::cerr << what << ": Response code: " << ec.value() << ": Message: " << ec.message() << "\n";
+	std::cerr << what << ": Response code: " << ec.value() << ": Message: " << ec.message() << std::endl;
 }
 
 
@@ -342,11 +367,14 @@ int main(int argc, char* argv[])
 		auto const addressStr("0.0.0.0");
 		auto const portNum(8080);
 
-		auto const address = boost::asio::ip::make_address(addressStr);
+        std::cout << "Configouring server on " << addressStr << ":" << portNum << std::endl;
+
+        Server& server = Server::getInstance();
+        auto const address = boost::asio::ip::make_address(addressStr);
 		auto const port = static_cast<unsigned short>(portNum);
 		auto const doc_root = std::make_shared<std::string>("c:/www/");
 
-		std::cout << "Starting server on " << addressStr << ":" << portNum << std::endl;
+        std::cout << "Starting server on " << addressStr << ":" << portNum << std::endl;
 
 		// The io_context is required for all I/O
 		boost::asio::io_context ioc{ 1 };

@@ -13,7 +13,7 @@ set(Boost_ROOT "/usr/local/Cellar/boost/1.68.0_1/")
 set(Boost_INLCUDE_DIR "/usr/local/Cellar/boost/1.68.0_1/include")
 set(Boost_LIBRARY_DIR "/usr/local/Cellar/boost/1.68.0_1/lib/")
 
-set(SOURCES Source.cpp)
+set(SOURCES Source.cpp Server.cpp)
 
 if(Boost_FOUND)
     include_directories("/usr/local/boost-1.68.0/include")
