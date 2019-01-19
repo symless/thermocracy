@@ -22,6 +22,9 @@ public:
     requestCallback_t operator [](std::string name){ return getCallback(name);};
 public:
     static const int NULL_ID = 0;
+	static const std::string ERROR_404;
+	static const std::string ERROR_400;
+	static const std::string ERROR_401;
 
 private:
     static std::string requestNotFound(int id,std::string params);

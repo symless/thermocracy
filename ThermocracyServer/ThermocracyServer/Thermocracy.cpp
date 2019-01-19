@@ -1,4 +1,5 @@
 #include "Thermocracy.h"
+#include "Server.h"
 
 std::string Thermocracy::echo(const std::string & data)
 {
@@ -9,6 +10,6 @@ std::string Thermocracy::echo(const std::string & data)
 	}
 	else
 	{
-		return "";
+		return Server::ERROR_400;
 	}
 }

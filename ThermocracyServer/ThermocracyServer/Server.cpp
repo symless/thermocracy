@@ -1,5 +1,9 @@
 #include "Server.h"
 
+const std::string Server::ERROR_404 = "ERROR_404";
+const std::string Server::ERROR_400 = "ERROR_400";
+const std::string Server::ERROR_401 = "ERROR_401";
+
 Server::Server()
 {
 
@@ -23,7 +27,7 @@ Server& Server::getInstance()
 }
 
 std::string Server::requestNotFound(int id,std::string params){
-    return "DUMMY: request not recognized";
+    return Server::ERROR_404;
 }
 
 Server::requestCallback_t Server::getCallback(std::string name)
