@@ -31,6 +31,12 @@
     <Filter Include="Header Files\Messages">
       <UniqueIdentifier>{83edce87-73cb-4efb-b4fc-2d87cdb7dde7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Server">
+      <UniqueIdentifier>{71041230-0492-485e-b1a5-3c98d66f852b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Server">
+      <UniqueIdentifier>{bd734227-03c5-42a6-bbbb-0f4289bfc471}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -45,6 +51,9 @@
     <ClCompile Include="JsonMessageBase.cpp">
       <Filter>Source Files\Messages</Filter>
     </ClCompile>
+    <ClCompile Include="Server.cpp">
+      <Filter>Source Files\Server</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\3party\json\json.h">
@@ -58,6 +67,9 @@
     </ClInclude>
     <ClInclude Include="JsonMessageBase.h">
       <Filter>Header Files\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="Server.h">
+      <Filter>Header Files\Server</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
