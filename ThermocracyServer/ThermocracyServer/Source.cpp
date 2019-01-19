@@ -197,11 +197,14 @@ template<
 
 	std::string path = req.target().to_string();
 
+	
+
 	if (path.compare("/echo") == 0) {
 		std::string json = req.body();
-		EchoJson echoJson;
-		echoJson.deserialize(json);
-		std::string respBody = echoJson.serialize();
+
+		auto server = Server::getInstance();
+
+		std::string respBody = server[path](Server::NULL_ID , json);
 
 		http::response<http::string_body> res{ http::status::ok, req.version() };
 		res.set(http::field::server, BOOST_BEAST_VERSION_STRING);

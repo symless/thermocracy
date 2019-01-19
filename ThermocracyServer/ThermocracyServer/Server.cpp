@@ -2,7 +2,9 @@
 
 Server::Server()
 {
-    m_requestMap["echo"] = [](int id, std::string params)->std::string { return params; };
+
+
+	m_requestMap["/echo"] = [this](int id, std::string params)->std::string { return m_ThermocracyServer.echo(params); };
 }
 
 

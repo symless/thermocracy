@@ -132,6 +132,7 @@
     <ClCompile Include="JsonMessageBase.cpp" />
     <ClCompile Include="Server.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Thermocracy.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\3party\json\json-forwards.h" />
@@ -139,6 +140,7 @@
     <ClInclude Include="EchoJson.h" />
     <ClInclude Include="JsonMessageBase.h" />
     <ClInclude Include="Server.h" />
+    <ClInclude Include="Thermocracy.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />
