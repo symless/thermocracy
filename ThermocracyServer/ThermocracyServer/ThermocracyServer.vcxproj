@@ -128,11 +128,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="3party\jsoncpp.cpp" />
+    <ClCompile Include="EchoJson.cpp" />
+    <ClCompile Include="JsonMessageBase.cpp" />
     <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\3party\json\json-forwards.h" />
     <ClInclude Include="..\3party\json\json.h" />
+    <ClInclude Include="EchoJson.h" />
+    <ClInclude Include="JsonMessageBase.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

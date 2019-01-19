@@ -39,6 +39,12 @@
     <ClCompile Include="3party\jsoncpp.cpp">
       <Filter>Source Files\3rdParty\Json</Filter>
     </ClCompile>
+    <ClCompile Include="EchoJson.cpp">
+      <Filter>Source Files\Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonMessageBase.cpp">
+      <Filter>Source Files\Messages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\3party\json\json.h">
@@ -46,6 +52,12 @@
     </ClInclude>
     <ClInclude Include="..\3party\json\json-forwards.h">
       <Filter>Header Files\3rdParty\Json</Filter>
+    </ClInclude>
+    <ClInclude Include="EchoJson.h">
+      <Filter>Header Files\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonMessageBase.h">
+      <Filter>Header Files\Messages</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
