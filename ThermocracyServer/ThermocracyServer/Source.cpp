@@ -53,6 +53,8 @@
 #include <memory>
 #include <string>
 #include <thread>
+#include "Server.h"
+
 
 using tcp = boost::asio::ip::tcp;       // from <boost/asio/ip/tcp.hpp>
 namespace http = boost::beast::http;    // from <boost/beast/http.hpp>
@@ -342,11 +344,14 @@ int main(int argc, char* argv[])
 		auto const addressStr("0.0.0.0");
 		auto const portNum(8080);
 
-		auto const address = boost::asio::ip::make_address(addressStr);
+        std::cout << "Configouring server on " << addressStr << ":" << portNum << std::endl;
+
+        Server& server = Server::getInstance();
+        auto const address = boost::asio::ip::make_address(addressStr);
 		auto const port = static_cast<unsigned short>(portNum);
 		auto const doc_root = std::make_shared<std::string>("c:/www/");
 
-		std::cout << "Starting server on " << addressStr << ":" << portNum << std::endl;
+        std::cout << "Starting server on " << addressStr << ":" << portNum << std::endl;
 
 		// The io_context is required for all I/O
 		boost::asio::io_context ioc{ 1 };
