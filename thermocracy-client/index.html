@@ -5,22 +5,40 @@
     <title>Thermocracy</title>
     <link rel="stylesheet" type="text/css" href="application.css"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant:400,500" rel="stylesheet">
   </head>
   <body>
-    <h1>Thermocracy</h1>
     <div class="js-role-selection roles">
+      <img src="assets/thermocracy-logo.svg" class="logo"/>
+      <h1>Make Temperature Great Again</h1>
       <button class="js-role-button-employee" >Employee</button>
       <button class="js-role-button-admin" >Admin</button>
     </div>
     <div class="js-admin-index hidden">
       admin
     </div>
-    <div class="js-employee-index hidden">
-      employee
+    <div class="js-employee-index hidden index">
+      <button class="red selected-vote">↑↑</button>
+      <button class="red">↑</button>
+      <div class="index__temp js-temperature-display">
+        --
+        <!-- 19<span>°</span> -->
+      </div>
+      <div class="index__sub">
+        NEXT ELECTION IN
+        <img src="assets/i-voted.svg" class="voted"/>
+      </div>
+      <div class="index__time">
+        01:15:07
+      </div>
+      <button>↓</button>
+      <button>↓↓</button>
     </div>
     <script>
       // You can also require other files to run in this process
-      require('./renderer.js')
+      require('./renderer.js');
+      require('./requests.js');
     </script>
   </body>
 </html>

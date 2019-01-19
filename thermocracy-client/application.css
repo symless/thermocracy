@@ -1,8 +1,3 @@
-/* GENERAL */
-.hidden {
-    display: none;
-}
-
 /* BUTTONS */
 button {
     display: flex;
@@ -27,6 +22,9 @@ button:hover {
     box-shadow: 0 4px 18px 0 rgba(31,41,48,.25);
     transform: translateY(-2px);
 }
+button:focus {
+    outline: none;
+}
 
 /* INDEX */
 body {
@@ -35,12 +33,16 @@ body {
     align-items: center;
     flex-direction: column;
     height: 100vh;
+    user-select: none;
 }
 
 h1 {
-    margin-top: -37px;
-    font-family: 'Montserrat', sans-serif;
-    font-weight: 600;
+    margin-top: 10px;
+    font-family: 'Cormorant', sans-serif;
+    font-weight: 500;
+    text-align: center;
+    font-size: 17px;
+    margin-bottom: 30px;
 }
 
 .roles {
@@ -52,4 +54,107 @@ h1 {
 
 .roles button + button {
     margin-top: 20px;
+}
+
+.logo {
+    width: 300px;
+    margin-bottom: -10px;
+}
+
+.index {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.index button {
+    width: 145px;
+    box-shadow: none;
+    height: 34px;
+    position: relative;
+}
+
+.index .red {
+    background-color: #f33b3b;
+}
+
+.index button:hover {
+    transform: none;
+}
+
+.index button + button {
+    margin-top: 8px;
+}
+
+.index__temp {
+    font-size: 160px;
+    font-weight: 400;
+    font-family: 'Oswald', sans-serif;
+    margin-top: -45px;
+}
+
+.index__temp span {
+    font-weight: 500;
+    font-size: 70px;
+    vertical-align: top;
+    margin-top: 35px;
+    display: inline-block;
+    position: absolute
+}
+
+.index__sub {
+    font-size: 22px;
+    font-family: 'Oswald', sans-serif;
+    margin-top: -30px;
+    position: relative;
+}
+
+.index__time {
+    font-size: 48px;
+    font-family: 'Oswald', sans-serif;
+    margin-top: -15px;
+}
+
+.voted {
+    position: absolute;
+    top: 0px;
+    right: -45px;
+    border-radius: 40px;
+    transform: rotate(30deg);
+    width: 60px;
+    box-shadow: 0 3px 5px 0 rgba(31,41,48,.15);
+}
+
+.selected-vote:after {
+    height: 32px;
+    width: 32px;
+    border-radius: 4px;
+    position: absolute;
+    right: -38px;
+    border: 3px solid transparent;
+    content: '✓';
+    box-sizing: border-box;
+    color: #f33b3b;
+    line-height: 10px;
+    font-size: 46px;
+}
+.selected-vote:before {
+    height: 32px;
+    width: 32px;
+    border-radius: 4px;
+    position: absolute;
+    right: -38px;
+    border: 3px solid black;
+    content: '✓';
+    box-sizing: border-box;
+    color: #f33b3b;
+    line-height: 10px;
+    font-size: 46px;
+    -webkit-text-stroke: 3.5px white;
+}
+
+/* GENERAL */
+.hidden {
+    display: none;
 }
