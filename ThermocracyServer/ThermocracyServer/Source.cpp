@@ -323,17 +323,10 @@ int main(int argc, char* argv[])
 	try
 	{
 		// Check command line arguments.
-		if (argc != 4)
-		{
-			std::cerr <<
-				"Usage: http-server-sync <address> <port> <doc_root>\n" <<
-				"Example:\n" <<
-				"    http-server-sync 0.0.0.0 8080 .\n";
-			return EXIT_FAILURE;
-		}
-		auto const address = boost::asio::ip::make_address(argv[1]);
-		auto const port = static_cast<unsigned short>(std::atoi(argv[2]));
-		auto const doc_root = std::make_shared<std::string>(argv[3]);
+		
+		auto const address = boost::asio::ip::make_address("192.168.1.17");
+		auto const port = static_cast<unsigned short>(8080);
+		auto const doc_root = std::make_shared<std::string>("c:/www/");
 
 		// The io_context is required for all I/O
 		boost::asio::io_context ioc{ 1 };
@@ -354,10 +347,12 @@ int main(int argc, char* argv[])
 				std::move(socket),
 				doc_root) }.detach();
 		}
+		system("PAUSE");
 	}
 	catch (const std::exception& e)
 	{
 		std::cerr << "Error: " << e.what() << std::endl;
+		system("PAUSE");
 		return EXIT_FAILURE;
 	}
 }
