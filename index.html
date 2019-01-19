@@ -2,15 +2,22 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Thermocracy</title>
+    <link rel="stylesheet" type="text/css" href="application.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
   </head>
   <body>
     <h1>Thermocracy</h1>
-    <!-- All of the Node.js APIs are available in this renderer process. -->
-    We are using Node.js <script>document.write(process.versions.node)</script>,
-    Chromium <script>document.write(process.versions.chrome)</script>,
-    and Electron <script>document.write(process.versions.electron)</script>.
-
+    <div class="js-role-selection roles">
+      <button class="js-role-button-employee" >Employee</button>
+      <button class="js-role-button-admin" >Admin</button>
+    </div>
+    <div class="js-admin-index hidden">
+      admin
+    </div>
+    <div class="js-employee-index hidden">
+      employee
+    </div>
     <script>
       // You can also require other files to run in this process
       require('./renderer.js')
