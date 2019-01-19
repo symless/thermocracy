@@ -21,7 +21,7 @@ public:
 	 * \param data the data to be loaded
 	 * \return if the deserialize was successful
 	 */
-	virtual bool deserialize(const std::string& data) = 0;
+	virtual bool deserialize(const std::string& data);
 
 protected:
 
@@ -32,3 +32,5 @@ protected:
 	Json::Value m_rootNode;
 
 };
+
+
