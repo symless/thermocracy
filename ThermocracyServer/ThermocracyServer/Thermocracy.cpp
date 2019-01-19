@@ -6,7 +6,7 @@
 #include "EchoJson.h"
 #include "UserJson.h"
 
-std::string Thermocracy::echo(const std::string & data)
+std::string Thermocracy::echo(const std::string & data) const 
 {
 	EchoJson echoJson;
 	if (echoJson.deserialize(data))
@@ -68,11 +68,14 @@ std::string Thermocracy::submitUserVote(const int id, const std::string& data)
 {
 	std::string rv = Server::ERROR_400;
 	JsonUserVote vote;
-	if (vote.deserialize(data))
+	if (vote.deserialize(data) && isClientExistent(id))
 	{
-		int voteValue = vote.getUserVote();
-		//TODO Actually do something with the data
-		rv = "{\"You_Voted\": true}";
+		const int voteValue = vote.getUserVote();
+		auto &clientData = accessClientData(id);
+
+		std::get<eVote>(clientData) = voteValue;
+
+		rv = "{\"You_Voted\": " + std::to_string(std::get<eVote>(clientData)) +"}";
 	}
 	return rv;
 }
