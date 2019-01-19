@@ -1,5 +1,6 @@
 #include "Thermocracy.h"
 #include "Server.h"
+#include "CurrentTemperature.h"
 
 std::string Thermocracy::echo(const std::string & data)
 {
@@ -12,4 +13,12 @@ std::string Thermocracy::echo(const std::string & data)
 	{
 		return Server::ERROR_400;
 	}
+}
+
+std::string Thermocracy::getCurrentTemp(const std::string& data)
+{
+	CurrentTemperature curTemp;
+	curTemp.deserialize("");
+	curTemp.setTemp(m_currentTemperature);
+	return curTemp.serialize();
 }

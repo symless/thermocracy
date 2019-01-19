@@ -57,6 +57,9 @@
     <ClCompile Include="Thermocracy.cpp">
       <Filter>Source Files\Server</Filter>
     </ClCompile>
+    <ClCompile Include="CurrentTemperature.cpp">
+      <Filter>Source Files\Messages</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\3party\json\json.h">
@@ -76,6 +79,9 @@
     </ClInclude>
     <ClInclude Include="Thermocracy.h">
       <Filter>Header Files\Server</Filter>
+    </ClInclude>
+    <ClInclude Include="CurrentTemperature.h">
+      <Filter>Header Files\Messages</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
