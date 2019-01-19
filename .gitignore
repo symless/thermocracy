@@ -19,6 +19,10 @@ dist
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
+# CMake Build results
+[Cc]make-build-debug/
+[Cc]MakeTmp/
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
