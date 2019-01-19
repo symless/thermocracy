@@ -30,8 +30,9 @@ std::string Thermocracy::submitUserVote(const int id, const std::string& data)
 	JsonUserVote vote;
 	if (vote.deserialize(data))
 	{
+		int voteValue = vote.getUserVote();
 		//TODO Actually do something with the data
-		rv = "{}";
+		rv = "{\"You_Voted\": true}";
 	}
 	return rv;
 }

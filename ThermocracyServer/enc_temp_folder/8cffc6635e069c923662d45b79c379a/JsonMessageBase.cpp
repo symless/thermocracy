@@ -21,17 +21,13 @@ std::string JsonMessageBase::serialize()
 
 bool JsonMessageBase::deserialize(const std::string& data)
 {
-	bool rv = false; //Return value;
+	bool rv = true; //Return value;
 	Json::Reader reader;
 
 	if (!reader.parse(data, m_rootNode))
 	{
 		std::cerr << "failed the read the JSON data: " << data;
 		rv = false;
-	}
-	else
-	{
-		rv = true;
 	}
 	return rv;
 }
