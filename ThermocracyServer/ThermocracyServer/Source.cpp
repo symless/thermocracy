@@ -135,10 +135,13 @@ template<
 		http::request<Body, http::basic_fields<Allocator>>&& req,
 		Send&& send)
 {
+	
+	std::cout << "Requesting: " << req.target().to_string() <<" Method: " <<req.method_string() << " Accept: "<< req[http::field::accept] << " ";
 	// Returns a bad request response
 	auto const bad_request =
 		[&req](boost::beast::string_view why)
 	{
+		std::cout << "Bad Request 400" << std::endl;
 		http::response<http::string_body> res{ http::status::bad_request, req.version() };
 		res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
 		res.set(http::field::content_type, "text/html");
@@ -152,6 +155,7 @@ template<
 	auto const not_found =
 		[&req](boost::beast::string_view target)
 	{
+		std::cout << "Not Found 404" << std::endl;
 		http::response<http::string_body> res{ http::status::not_found, req.version() };
 		res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
 		res.set(http::field::content_type, "text/html");
@@ -165,6 +169,7 @@ template<
 	auto const server_error =
 		[&req](boost::beast::string_view what)
 	{
+		std::cout << "Internal Server Error 500" << std::endl;
 		http::response<http::string_body> res{ http::status::internal_server_error, req.version() };
 		res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
 		res.set(http::field::content_type, "text/html");
@@ -209,6 +214,7 @@ template<
 	// Respond to HEAD request
 	if (req.method() == http::verb::head)
 	{
+		std::cout << "Success 200" << std::endl;
 		http::response<http::empty_body> res{ http::status::ok, req.version() };
 		res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
 		res.set(http::field::content_type, mime_type(path));
@@ -218,6 +224,12 @@ template<
 	}
 
 	// Respond to GET request
+
+	/*boost::system::error_code ec;
+	log(ec, "Success 200");*/
+
+	std::cout << "Success 200" << std::endl;
+
 	http::response<http::file_body> res{
 		std::piecewise_construct,
 		std::make_tuple(std::move(body)),
@@ -267,7 +279,6 @@ struct send_lambda
 		// Determine if we should close the connection after
 		close_ = msg.need_eof();
 
-		log(ec_, "Request Received:");
 		// We need the serializer here because the serializer requires
 		// a non-const file_body, and the message oriented version of
 		// http::write only works with const messages.
@@ -328,7 +339,7 @@ int main(int argc, char* argv[])
 	{
 		// Check command line arguments.
 
-		auto const addressStr("192.168.1.17");
+		auto const addressStr("0.0.0.0");
 		auto const portNum(8080);
 
 		auto const address = boost::asio::ip::make_address(addressStr);
