@@ -128,6 +128,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="3party\jsoncpp.cpp" />
+    <ClCompile Include="CurrentTemperature.cpp" />
     <ClCompile Include="EchoJson.cpp" />
     <ClCompile Include="JsonMessageBase.cpp" />
     <ClCompile Include="Server.cpp" />
@@ -138,6 +139,7 @@
   <ItemGroup>
     <ClInclude Include="..\3party\json\json-forwards.h" />
     <ClInclude Include="..\3party\json\json.h" />
+    <ClInclude Include="CurrentTemperature.h" />
     <ClInclude Include="EchoJson.h" />
     <ClInclude Include="JsonMessageBase.h" />
     <ClInclude Include="Server.h" />

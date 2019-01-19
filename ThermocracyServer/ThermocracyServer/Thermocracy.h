@@ -13,9 +13,14 @@ public:
 	using Role_t = std::string;
 	using ClientData_t = std::tuple<Active_t,Role_t,Vote_t,VotingDate_t>;
 	static constexpr ClientID_t client_ID_incr = 1;
+	float m_currentTemperature = 20.89475693;
+
+
 public:
 	std::string echo(const std::string& data);
 	std::string user(const std::string& data);
+
+	std::string getCurrentTemp(const std::string& data);
 private:
 	ClientID_t createNewClient(Role_t);
 	void removeClient(ClientID_t);
@@ -23,4 +28,6 @@ private:
 	bool isClientExistent(ClientID_t);
 private:
 	std::map<ClientID_t,ClientData_t> m_clientData;
+
+
 };

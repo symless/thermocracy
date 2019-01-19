@@ -155,6 +155,19 @@ template<
 		return res;
 	};
 
+	auto const unauthorized =
+		[&req](boost::beast::string_view why)
+	{
+		std::cout << "Unauthorized 401" << std::endl;
+		http::response<http::string_body> res{ http::status::unauthorized, req.version() };
+		res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
+		res.set(http::field::content_type, "text/html");
+		res.keep_alive(req.keep_alive());
+		res.body() = why.to_string();
+		res.prepare_payload();
+		return res;
+	};
+
 	// Returns a not found response
 	auto const not_found =
 		[&req](boost::beast::string_view target)
@@ -199,21 +212,33 @@ template<
 
 	
 
-	if (path.compare("/echo") == 0) {
-		std::string json = req.body();
+	std::string json = req.body();
 
-		auto server = Server::getInstance();
+	auto server = Server::getInstance();
 
-		std::string respBody = server[path](Server::NULL_ID , json);
+	std::string respBody = server[path](Server::NULL_ID , json);
 
-		http::response<http::string_body> res{ http::status::ok, req.version() };
-		res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
-		res.set(http::field::content_type, "application/json");
-		res.keep_alive(req.keep_alive());
-		res.body() = respBody;
-		res.prepare_payload();
-		return send(std::move(res));
+	if (respBody.compare(Server::ERROR_404) == 0) {
+		return send(not_found(path));
 	}
+
+	if (respBody.compare(Server::ERROR_400) == 0) {
+		return send(bad_request("Your request is malformed"));
+	}
+
+	if (respBody.compare(Server::ERROR_401) == 0) {
+		return send(unauthorized("Unauthorized request"));
+	}
+
+	std::cout << "Success 200" << std::endl;
+	http::response<http::string_body> res{ http::status::ok, req.version() };
+	res.set(http::field::server, BOOST_BEAST_VERSION_STRING);
+	res.set(http::field::content_type, "application/json");
+	res.keep_alive(req.keep_alive());
+	res.body() = respBody;
+	res.prepare_payload();
+	return send(std::move(res));
+	
 
 	//Build the path to the requested file
 	//std::string path = path_cat(doc_root, req.target());

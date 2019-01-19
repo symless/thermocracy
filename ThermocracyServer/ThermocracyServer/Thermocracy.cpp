@@ -1,4 +1,6 @@
 #include "Thermocracy.h"
+#include "Server.h"
+#include "CurrentTemperature.h"
 
 #include "EchoJson.h"
 #include "UserJson.h"
@@ -12,7 +14,7 @@ std::string Thermocracy::echo(const std::string & data)
 	}
 	else
 	{
-		return "";
+		return Server::ERROR_400;
 	}
 }
 
@@ -51,4 +53,12 @@ Thermocracy::ClientData_t& Thermocracy::accessClientData(Thermocracy::ClientID_t
 bool Thermocracy::isClientExistent(Thermocracy::ClientID_t id)
 {
 	return m_clientData.find(id) != m_clientData.end();
+}
+
+std::string Thermocracy::getCurrentTemp(const std::string& data)
+{
+	CurrentTemperature curTemp;
+	curTemp.deserialize("");
+	curTemp.setTemp(m_currentTemperature);
+	return curTemp.serialize();
 }
