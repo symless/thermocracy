@@ -232,11 +232,13 @@ template<
 //------------------------------------------------------------------------------
 
 // Report a failure
-void
-fail(boost::system::error_code ec, char const* what)
+void log(boost::system::error_code ec, char const* what)
 {
-	std::cerr << what << ": " << ec.message() << "\n";
+
+	std::cerr << what << ": Response code: " << ec.value() << ": Message: " << ec.message() << "\n";
 }
+
+
 
 // This is the C++11 equivalent of a generic lambda.
 // The function object is used to send an HTTP message.
@@ -265,6 +267,7 @@ struct send_lambda
 		// Determine if we should close the connection after
 		close_ = msg.need_eof();
 
+		log(ec_, "Request Received:");
 		// We need the serializer here because the serializer requires
 		// a non-const file_body, and the message oriented version of
 		// http::write only works with const messages.
@@ -296,12 +299,12 @@ do_session(
 		if (ec == http::error::end_of_stream)
 			break;
 		if (ec)
-			return fail(ec, "read");
+			return log(ec, "read");
 
 		// Send the response
 		handle_request(*doc_root, std::move(req), lambda);
 		if (ec)
-			return fail(ec, "write");
+			return log(ec, "write");
 		if (close)
 		{
 			// This means we should close the connection, usually because
@@ -320,13 +323,19 @@ do_session(
 
 int main(int argc, char* argv[])
 {
+
 	try
 	{
 		// Check command line arguments.
-		
-		auto const address = boost::asio::ip::make_address("192.168.1.17");
-		auto const port = static_cast<unsigned short>(8080);
+
+		auto const addressStr("192.168.1.17");
+		auto const portNum(8080);
+
+		auto const address = boost::asio::ip::make_address(addressStr);
+		auto const port = static_cast<unsigned short>(portNum);
 		auto const doc_root = std::make_shared<std::string>("c:/www/");
+
+		std::cout << "Starting server on " << addressStr << ":" << portNum << std::endl;
 
 		// The io_context is required for all I/O
 		boost::asio::io_context ioc{ 1 };
