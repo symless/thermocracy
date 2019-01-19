@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Thermocracy</title>
+    <link rel="stylesheet" type="text/css" href="application.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
+  </head>
+  <body>
+    <h1>Thermocracy</h1>
+    <div class="js-role-selection roles">
+      <button class="js-role-button-employee" >Employee</button>
+      <button class="js-role-button-admin" >Admin</button>
+    </div>
+    <div class="js-admin-index hidden">
+      admin
+    </div>
+    <div class="js-employee-index hidden">
+      employee
+    </div>
+    <script>
+      // You can also require other files to run in this process
+      require('./renderer.js')
+    </script>
+  </body>
+</html>

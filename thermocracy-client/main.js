@@ -6,6 +6,7 @@ const {app, BrowserWindow} = require('electron')
 let mainWindow
 
 function createWindow () {
+  
   // Create the browser window.
   mainWindow = new BrowserWindow({width: 800, height: 600})
 
@@ -22,6 +23,8 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
+  mainWindow.webContents.openDevTools();
 }
 
 // This method will be called when Electron has finished
