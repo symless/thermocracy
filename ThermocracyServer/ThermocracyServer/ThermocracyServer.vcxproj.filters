@@ -63,6 +63,12 @@
     <ClCompile Include="UserJson.cpp">
       <Filter>Source Files\Messages</Filter>
     </ClCompile>
+    <ClCompile Include="JsonUserVote.cpp">
+      <Filter>Source Files\Messages</Filter>
+    </ClCompile>
+    <ClCompile Include="JsonVoteSummery.cpp">
+      <Filter>Source Files\Messages</Filter>
+    </ClCompile>
     <ClCompile Include="JsonOfficeConfiguration.cpp">
       <Filter>Source Files\Messages</Filter>
     </ClCompile>
@@ -90,6 +96,12 @@
       <Filter>Header Files\Messages</Filter>
     </ClInclude>
     <ClInclude Include="UserJson.h">
+      <Filter>Header Files\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonUserVote.h">
+      <Filter>Header Files\Messages</Filter>
+    </ClInclude>
+    <ClInclude Include="JsonVoteSummery.h">
       <Filter>Header Files\Messages</Filter>
     </ClInclude>
     <ClInclude Include="JsonOfficeConfiguration.h">
