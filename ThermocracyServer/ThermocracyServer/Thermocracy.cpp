@@ -1,6 +1,7 @@
 #include "Thermocracy.h"
 #include "Server.h"
 #include "CurrentTemperature.h"
+#include "JsonOfficeConfiguration.h"
 
 #include "EchoJson.h"
 #include "UserJson.h"
@@ -27,6 +28,27 @@ std::string Thermocracy::user(const std::string& data)
 	Role_t role = json.get_role();
 	ClientID_t id = createNewClient(role);
 	json.set_id(id);
+
+	return json.serialize();
+}
+
+std::string Thermocracy::setOfficeConfiguration(int userId, const std::string& data)
+{
+	JsonOfficeConfiguration json;
+
+	if (!json.deserialize(data))
+		return Server::ERROR_400;
+
+	ClientData_t &client = accessClientData(userId);
+	Role_t role = std::get<1>(client);
+	if (role.compare("admin") != 0) {
+		return Server::ERROR_401;
+	}
+
+	SeasonDefaults_t defaults = SeasonDefaults_t{ json.getSeasonDefault("summer"), json.getSeasonDefault("autumn"), json.getSeasonDefault("winter"), json.getSeasonDefault("spring") };
+	std::vector<ChangeHour_t> hours = json.getChangeHours();
+
+	m_officeConfiguration = SettingData_t{ defaults, hours };
 
 	return json.serialize();
 }
