@@ -1,7 +1,8 @@
 const request = require('request');
-const API_URL = "https://ba8b42bb-fc9b-4701-8e8d-40431531d355.mock.pstmn.io"
+//const API_URL = "https://ba8b42bb-fc9b-4701-8e8d-40431531d355.mock.pstmn.io"
+const API_URL = "http://192.168.1.17:8080"
 
-const get = function({ path, options, callback }) {
+const get = function({ path, callback, ...options }) {
     request({
         method: 'GET',
         url: API_URL + path,
@@ -12,7 +13,7 @@ const get = function({ path, options, callback }) {
     );
 }
 
-const post = function({ path, options, body, callback }) {
+const post = function({ path, body, callback, ...options }) {
     request({
         method: 'POST',
         url: API_URL + path,

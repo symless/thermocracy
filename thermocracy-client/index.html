@@ -15,12 +15,19 @@
       <button class="js-role-button-employee" >Employee</button>
       <button class="js-role-button-admin" >Admin</button>
     </div>
-    <div class="js-admin-index hidden">
-      admin
+    <div class="js-admin-index hidden admin">
+      <input type=number/>
+      <input type=number/>
+      <input type=number/>
+      <input type=number/>
+      <input type=number/>
+      <input type=number/>
+
+      <button>Submit</button>
     </div>
     <div class="js-employee-index hidden index">
-      <button class="red selected-vote">↑↑</button>
-      <button class="red">↑</button>
+      <button class="red js-vote-button" data-vote="2">↑↑</button>
+      <button class="red js-vote-button" data-vote="1">↑</button>
       <div class="index__temp js-temperature-display">
         --
         <!-- 19<span>°</span> -->
@@ -32,13 +39,12 @@
       <div class="index__time">
         01:15:07
       </div>
-      <button>↓</button>
-      <button>↓↓</button>
+      <button class="js-vote-button" data-vote="-1">↓</button>
+      <button class="js-vote-button" data-vote="-2">↓↓</button>
     </div>
     <script>
       // You can also require other files to run in this process
       require('./renderer.js');
-      require('./requests.js');
     </script>
   </body>
 </html>
