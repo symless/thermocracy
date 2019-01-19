@@ -5,22 +5,94 @@
     <title>Thermocracy</title>
     <link rel="stylesheet" type="text/css" href="application.css"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Oswald:400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Cormorant:400,500" rel="stylesheet">
   </head>
   <body>
-    <h1>Thermocracy</h1>
     <div class="js-role-selection roles">
+      <img src="assets/thermocracy-logo.svg" class="logo"/>
+      <h1>Make Temperature Great Again</h1>
       <button class="js-role-button-employee" >Employee</button>
       <button class="js-role-button-admin" >Admin</button>
     </div>
-    <div class="js-admin-index hidden">
-      admin
+    <div class="js-admin-index hidden admin">
+      <h2>Seasonal Defaults</h2>
+      <datalist id="temps">
+        <option>15</option>
+        <option>16</option>
+        <option>17</option>
+        <option>18</option>
+        <option>19</option>
+        <option>20</option>
+        <option>21</option>
+        <option>22</option>
+        <option>23</option>
+        <option>24</option>
+        <option>25</option>
+      </datalist>
+      <div class="admin__input">
+        <label id="Summer">Summer</label>
+        <input class="js-slider" type="range" min="15" max="25" value="20" list="temps" data-label="Summer" data-type="temp"/>
+      </div>
+      <div class="admin__input">
+        <label id="Autumn">Autumn</label>
+        <input class="js-slider" type="range" min="15" max="25" value="20" list="temps" data-label="Autumn" data-type="temp"/>
+      </div>
+      <div class="admin__input">
+        <label id="Winter">Winter</label>
+        <input class="js-slider" type="range" min="15" max="25" value="20" list="temps" data-label="Winter" data-type="temp"/>
+      </div>
+      <div class="admin__input">
+        <label id="Spring">Spring</label>
+        <input class="js-slider" type="range" min="15" max="25" value="20" list="temps" data-label="Spring" data-type="temp"/>
+      </div>
+      <h2>Thermostat Change Times</h2>
+      <datalist id="times">
+          <option>7</option>
+          <option>8</option>
+          <option>9</option>
+          <option>10</option>
+          <option>11</option>
+          <option>12</option>
+          <option>13</option>
+          <option>14</option>
+          <option>15</option>
+          <option>16</option>
+          <option>17</option>
+          <option>18</option>
+          <option>19</option>
+        </datalist>
+      <div class="admin__input">
+        <label id="Time 1">Time 1</label>
+        <input class="js-slider" type="range" min="7" max="19" list="times" data-label="Time 1" data-type="time"/>
+      </div>
+      <div class="admin__input">
+        <label id="Time 2">Time 2</label>
+        <input class="js-slider" type="range" min="7" max="19" list="times" data-label="Time 2" data-type="time"/>
+      </div>
+
+      <button id="admin-submit">Submit</button>
     </div>
-    <div class="js-employee-index hidden">
-      employee
+    <div class="js-employee-index hidden index">
+      <button class="red js-vote-button" data-vote="2">↑↑</button>
+      <button class="red js-vote-button" data-vote="1">↑</button>
+      <div class="index__temp js-temperature-display">
+        --
+        <!-- 19<span>°</span> -->
+      </div>
+      <div class="index__sub">
+        NEXT ELECTION IN
+        <img src="assets/i-voted.svg" class="voted"/>
+      </div>
+      <div class="index__time">
+        01:15:07
+      </div>
+      <button class="js-vote-button" data-vote="-1">↓</button>
+      <button class="js-vote-button" data-vote="-2">↓↓</button>
     </div>
     <script>
       // You can also require other files to run in this process
-      require('./renderer.js')
+      require('./renderer.js');
     </script>
   </body>
 </html>
